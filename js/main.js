@@ -2,6 +2,7 @@ const API_KEY = 'api_key=1cf50e6248dc270629e802686245c2c8';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&'+API_KEY;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+const searchURL = BASE_URL + '/search/movie?'+API_KEY;
 
 const genres = [
     {
@@ -92,7 +93,7 @@ const next = document.getElementById('next');
 const current = document.getElementById('current');
 
 var currentPage = 1;
-var totalPages = 2;  // Set to show only two pages
+var totalPages = 2;  
 
 var selectedGenre = [];
 
@@ -168,7 +169,7 @@ function getMovies(url) {
         if (data.results.length !== 0) {
             showMovies(data.results);
             currentPage = data.page;
-            totalPages = 2;  // Set to show only two pages
+            totalPages = 2;  
 
             current.innerText = currentPage;
 
@@ -207,15 +208,28 @@ function showMovies(data) {
                 <h3>${title}</h3>
                 <span class="${getColor(vote_average)}">${vote_average}</span>
             </div>
+     
 
             <div class="overview">
 
                 <h3>Overview</h3>
                 ${overview}
+                <div class="buttons">
+                <button class="addToWatchList">Add to watchlist</button>
+                <button class="viewMore">View more</button>
+            </div>
             </div>
         `;
 
+
+
         main.appendChild(movieEl);
+
+        
+        movieEl.querySelector('.viewMore').addEventListener('click', (event) => {
+            const movieId = event.target.dataset.id;
+            window.location.href = `individual.html?id=${movieId}`;
+        });
     });
 }
 
@@ -230,18 +244,18 @@ function getColor(vote) {
 }
 
 form.addEventListener('submit', (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const searchTerm = search.value;
-    selectedGenre = [];
-    setGenre();
-    if (searchTerm) {
-        getMovies(searchURL+'&query='+searchTerm);
-    } else {
-        getMovies(API_URL);
-    }
-
+  const searchTerm = search.value;
+  selectedGenre = [];
+  setGenre();
+  if (searchTerm) {
+      getMovies(searchURL+'&query='+searchTerm);
+  } else {
+      getMovies(API_URL);
+  }
 });
+
 
 prev.addEventListener('click', () => {
     if (currentPage > 1) {
@@ -254,3 +268,55 @@ next.addEventListener('click', () => {
         getMovies(API_URL + '&page=' + (currentPage + 1) + '&with_genres=' + encodeURI(selectedGenre.join(',')));
     }
 });
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   const params = new URLSearchParams(window.location.search);
+//   const movieId = params.get('id');
+  
+//   fetch(BASE_URL + '/movie/' + movieId + '?' + API_KEY)
+//   .then(response => response.json())
+//   .then(data => {
+//       // Use data to display movie details on the page
+//       document.getElementById('movieTitle').textContent = data.title;
+//       document.getElementById('movieDescription').textContent = data.description;
+//       // ...
+//   })
+//   .catch(error => console.error('Error:', error));
+
+// });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const movieId = params.get('id');
+  
+  fetch(`BASE_URL + '/movie/${movieId}?'+API_KEY`)
+  .then(response => response.json())
+  .then(data => {
+      // Populate movie details
+      document.getElementById('moviePoster').src = `${IMG_URL}${data.poster_path}`;
+      document.getElementById('movieTitle').textContent = data.title;
+      document.getElementById('director').textContent = data.director;
+      document.getElementById('actors').textContent = data.actors.join(', ');
+      document.getElementById('viewerRating').textContent = data.vote_average;
+      document.getElementById('synopsis').textContent = data.overview;
+      document.getElementById('boxOffice').textContent = data.box_office;
+
+      // Display trailer (if available)
+      if (data.trailer) {
+          const trailerElement = document.getElementById('trailer');
+          trailerElement.innerHTML = `
+              <iframe width="560" height="315" src="${data.trailer}" frameborder="0" allowfullscreen></iframe>
+          `;
+      }
+  })
+  .catch(error => console.error('Error:', error));
+});
+
+
+
+
+
+
+
+
