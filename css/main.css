@@ -64,7 +64,7 @@ main{
 }
 
 .movie-info{
-    color:#070b45;
+    color:#2a2e66;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -83,11 +83,9 @@ main{
     font-weight: bold;
 }
 
-.movie-info span.green{
-    color:lightgreen;
-}
 
-.movie-info span.yellow{
+
+.movie-info span{
     color:yellow;
 }
 
@@ -120,17 +118,23 @@ main{
     margin: 10px auto;
 }
 
-.tag{
-    color:#070b45;
+.tags{
+    color:yellow;
     padding:10px 20px;
-    background-color: yellow;
+    background-color: #2a2e66;
     border-radius: 50px;
     margin:5px;
     display:inline-block;
     cursor: pointer;
 }
 
-.tag.highlight{
+.tags-hover{
+    background-color: #FDF502;
+    color: #2a2e66;
+}
+
+
+.tags.highlight{
     background-color: blue;
 }
 .no-results{
@@ -293,3 +297,13 @@ main{
     background-color: #2a2e66;
   }
   
+  .details{
+    color: #FDF502;
+  }
+
+  .poster1{
+    margin-left:300px;
+    margin-bottom: 100px;
+    width: 300px;
+    height: 500px;
+  }

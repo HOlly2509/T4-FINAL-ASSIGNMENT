@@ -103,7 +103,7 @@ function setGenre() {
     tagsEl.innerHTML = '';
     genres.forEach(genre => {
         const t = document.createElement('div');
-        t.classList.add('tag');
+        t.classList.add('tags');
         t.id = genre.id;
         t.innerText = genre.name;
         t.addEventListener('click', () => {
@@ -195,43 +195,43 @@ function getMovies(url) {
 }
 
 function showMovies(data) {
-    main.innerHTML = '';
+  main.innerHTML = '';
 
-    data.forEach(movie => {
-        const { title, poster_path, vote_average, overview, id } = movie;
-        const movieEl = document.createElement('div');
-        movieEl.classList.add('movie');
-        movieEl.innerHTML = `
-             <img src="${poster_path ? IMG_URL + poster_path : "http://via.placeholder.com/1080x1580"}" alt="${title}">
+  data.forEach(movie => {
+      const { title, poster_path, vote_average, overview, id } = movie;
+      const movieEl = document.createElement('div');
+      movieEl.classList.add('movie');
+      movieEl.innerHTML = `
+           <img src="${poster_path ? IMG_URL + poster_path : "http://via.placeholder.com/1080x1580"}" alt="${title}">
 
-            <div class="movie-info">
-                <h3>${title}</h3>
-                <span class="${getColor(vote_average)}">${vote_average}</span>
-            </div>
-     
+          <div class="movie-info">
+              <h3>${title}</h3>
+              <span class="${getColor(vote_average)}">${vote_average}</span>
+          </div>
 
-            <div class="overview">
+          <div class="overview">
+              <h3>Overview</h3>
+              ${overview}
+              <div class="buttons">
+                  <button class="addToWatchList">Add to watchlist</button>
+                  <button class="viewMore" data-id="${id}">View more</button>
+              </div>
+          </div>
+      `;
 
-                <h3>Overview</h3>
-                ${overview}
-                <div class="buttons">
-                <button class="addToWatchList">Add to watchlist</button>
-                <button class="viewMore">View more</button>
-            </div>
-            </div>
-        `;
+      main.appendChild(movieEl);
+  });
 
-
-
-        main.appendChild(movieEl);
-
-        
-        movieEl.querySelector('.viewMore').addEventListener('click', (event) => {
-            const movieId = event.target.dataset.id;
-            window.location.href = `individual.html?id=${movieId}`;
-        });
-    });
+  // Add event listener for "View more" buttons
+  const viewMoreButtons = document.querySelectorAll('.viewMore');
+  viewMoreButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+          const movieId = event.target.dataset.id;
+          window.location.href = `individual.html?id=${movieId}`;
+      });
+  });
 }
+
 
 function getColor(vote) {
     if (vote >= 8) {
@@ -287,14 +287,14 @@ next.addEventListener('click', () => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const params = new URLSearchParams(window.location.search);
-  const movieId = params.get('id');
-  
-  fetch(`BASE_URL + '/movie/${movieId}?'+API_KEY`)
-  .then(response => response.json())
-  .then(data => {
+  // Check if movie data is in local storage
+  const movieData = localStorage.getItem('movieData');
+
+  if (movieData) {
+      const data = JSON.parse(movieData);
+
       // Populate movie details
-      document.getElementById('moviePoster').src = `${IMG_URL}${data.poster_path}`;
+      document.getElementById('moviePoster').src = data.poster_path;
       document.getElementById('movieTitle').textContent = data.title;
       document.getElementById('director').textContent = data.director;
       document.getElementById('actors').textContent = data.actors.join(', ');
@@ -309,9 +309,37 @@ document.addEventListener('DOMContentLoaded', () => {
               <iframe width="560" height="315" src="${data.trailer}" frameborder="0" allowfullscreen></iframe>
           `;
       }
-  })
-  .catch(error => console.error('Error:', error));
+  } else {
+      // Fetch data from API and store in local storage
+      fetch(API_URL)
+          .then(response => response.json())
+          .then(data => {
+              // Parse and store data in local storage
+              localStorage.setItem('movieData', JSON.stringify(data));
+
+              // Populate movie details
+              document.getElementById('moviePoster').src = data.poster_path;
+              document.getElementById('movieTitle').textContent = data.title;
+              document.getElementById('director').textContent = data.director;
+              document.getElementById('actors').textContent = data.actors.join(', ');
+              document.getElementById('viewerRating').textContent = data.vote_average;
+              document.getElementById('synopsis').textContent = data.overview;
+              document.getElementById('boxOffice').textContent = data.box_office;
+
+              // Display trailer (if available)
+              if (data.trailer) {
+                  const trailerElement = document.getElementById('trailer');
+                  trailerElement.innerHTML = `
+                      <iframe width="560" height="315" src="${data.trailer}" frameborder="0" allowfullscreen></iframe>
+                  `;
+              }
+          })
+          .catch(error => console.error('Error:', error));
+  }
 });
+
+
+
 
 
 
