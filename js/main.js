@@ -340,6 +340,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+document.addEventListener("DOMContentLoaded", function () {
+  // ... (your existing code)
+
+  // Add an event listener for the "Add to watchlist" button
+  const addToWatchListButtons = document.querySelectorAll('.addToWatchList');
+  addToWatchListButtons.forEach(button => {
+      button.addEventListener('click', addToWatchList);
+  });
+
+  function addToWatchList() {
+      // Get the movie details
+      const movieTitle = this.parentElement.parentElement.querySelector('.movie-info h3').textContent;
+      const moviePoster = this.parentElement.parentElement.querySelector('img').src;
+
+      // Store the movie in local storage
+      const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+      watchlist.push({ title: movieTitle, poster: moviePoster });
+      localStorage.setItem('watchlist', JSON.stringify(watchlist));
+  }
+});
+
 
 
 
