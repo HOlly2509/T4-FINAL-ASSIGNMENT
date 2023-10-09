@@ -227,7 +227,7 @@ function showMovies(data) {
   viewMoreButtons.forEach(button => {
       button.addEventListener('click', (event) => {
           const movieId = event.target.dataset.id;
-          window.location.href = `individual.html?id=${movieId}`;
+          window.location.href = `info.html?id=${movieId}`;
       });
   });
 }
