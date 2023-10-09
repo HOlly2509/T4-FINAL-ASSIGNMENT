@@ -3,43 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <title>Movie App</title>
+    <link rel="stylesheet" href="css/maintwo.css">
+    <title>Cinemania</title>
 </head>
 <body>
-    
+
     <header>
-        <form  id="form">
+        <div class="branding">
+            Cinemania
+            <img src="assets/logo.png" alt="Cinemania Logo" class="logo">
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="">Sign Up</a>
+            <a href="movielist.html">Movie List</a>
+            <a href="watchlist.html">Watchlist</a>
+        </nav>
+        <form id="form">
             <input type="text" placeholder="Search" id="search" class="search">
         </form>
     </header>
-    <div id="tags"></div>
 
-    <div id="myNav" class="overlay">
+    <section class="hero">
+        <h1>Welcome to Cinemania</h1>
+        <p>Your onestop destination for all the movies you can possibly need!</p>
+    </section>
 
-        <!-- Button to close the overlay navigation -->
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      
-        <!-- Overlay content -->
-        <div class="overlay-content" id="overlay-content"></div>
-        
-        <a href="javascript:void(0)" class="arrow left-arrow" id="left-arrow">&#8656;</a> 
-        
-        <a href="javascript:void(0)" class="arrow right-arrow" id="right-arrow" >&#8658;</a>
+    <main>
+        <section class="feature-film">
+            <div class="poster">
+                <img src="assets/Fast_and_Furious_Poster.jpg" alt="Featured Film Poster">
+            </div>
+            <div class="feature-film-description">
+                <h2>A film we recommend</h2>
+                <h1>fast & Furious</h1>
+                <p>The Fast and the Furious started as a movie about drag racing in Los Angeles and became a high stakes, action-packed franchise about family—and working with the government to take down big bads around the world.</p>
+                <a href="individual.html" class="watch-now">Watch Now</a>  <!--Made the href the individual.html-->
+            </div>
+        </section>
+    </main>
 
-    </div>
-    <main id="main"></main>
-
-   
-    <div class="pagination">
-        <div class="page" id="prev">Previous Page</div>
-        <div class="current" id="current">1</div>
-        <div class="page" id="next">Next Page</div>
-
-    </div>
+    <footer>
+        <p>&copy; 2023 Cinemania. All Rights Reserved.</p>
+    </footer>
 
     <script src="js/main.js"></script>
 </body>
 </html>
-
-

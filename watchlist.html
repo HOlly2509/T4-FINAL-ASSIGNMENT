@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/watchlist.css">
+    <title>My Watchlist</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="branding">Cinemania</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="">Sign Up</a>
+            <a href="movielist.html">Movie List</a>
+            <a href="watchlist.html">Watchlist</a>
+        </nav>
+        <form id="form">
+            <input type="text" placeholder="Search" id="search" class="search">
+        </form>
+    </header>
+
+    <main>
+        <h2>My Watchlist</h2>
+        <div id="watchlist-container"></div>
+        <div class="watchlist-container">
+            <div class="watchlist-movie">
+                <img src="assets/Fast_and_Furious_Poster.jpg" alt="Movie Title">
+                <div class="watchlist-info">
+                    <h3>Movie Title</h3>
+                    <button class="remove-from-watchlist">Remove</button>
+                </div>
+            </div>
+            <!-- Where id add more movie cards -->
+            <!--Need to find a way to make js work well with movielist-->
+        </div>
+        
+    </main>
+
+    <script src="js/watchlist.js"></script>
+
+</body>
+</html>
