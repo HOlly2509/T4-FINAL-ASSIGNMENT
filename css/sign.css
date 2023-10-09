@@ -28,5 +28,6 @@ body{
 .block{
 width: 50%;
 height: 50%;
-
+color: #FDF502;
+padding-bottom: 10%;
 }
