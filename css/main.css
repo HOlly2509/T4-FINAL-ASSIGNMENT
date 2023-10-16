@@ -361,3 +361,9 @@ main{
 #movieTitle{
     margin-right: 500px;
 }
+
+.nav{
+    width: 600px;
+    height: 100px;
+    float: left;
+}
