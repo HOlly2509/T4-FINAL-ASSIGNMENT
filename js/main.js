@@ -222,40 +222,37 @@ function showMovies(data) {
       main.appendChild(movieEl);
   });
 
-  // Add event listener for "View more" buttons
-  const viewMoreButtons = document.querySelectorAll('.viewMore');
-  viewMoreButtons.forEach(button => {
-      button.addEventListener('click', (event) => {
-          const movieId = event.target.dataset.id;
-          window.location.href = `info.html?id=${movieId}`;
-      });
-  });
-}
 
+
+
+  //INFO PAGE//
+
+
+ // Add event listener for "View more" buttons
+const viewMoreButtons = document.querySelectorAll('.viewMore');
+viewMoreButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+        const movieId = event.target.dataset.id;
+        window.location.href = `info.html?id=${movieId}`;
+    });
+});
 
 function getColor(vote) {
-    if (vote >= 8) {
-        return 'green';
-    } else if (vote >= 5) {
-        return 'orange';
-    } else {
-        return 'red';
-    }
+    // (Your existing getColor function code here...)
 }
 
 form.addEventListener('submit', (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const searchTerm = search.value;
-  selectedGenre = [];
-  setGenre();
-  if (searchTerm) {
-      getMovies(searchURL+'&query='+searchTerm);
-  } else {
-      getMovies(API_URL);
-  }
+    const searchTerm = search.value;
+    selectedGenre = [];
+    setGenre();
+    if (searchTerm) {
+        getMovies(searchURL+'&query='+searchTerm);
+    } else {
+        getMovies(API_URL);
+    }
 });
-
 
 prev.addEventListener('click', () => {
     if (currentPage > 1) {
@@ -269,99 +266,49 @@ next.addEventListener('click', () => {
     }
 });
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   const params = new URLSearchParams(window.location.search);
-//   const movieId = params.get('id');
-  
-//   fetch(BASE_URL + '/movie/' + movieId + '?' + API_KEY)
-//   .then(response => response.json())
-//   .then(data => {
-//       // Use data to display movie details on the page
-//       document.getElementById('movieTitle').textContent = data.title;
-//       document.getElementById('movieDescription').textContent = data.description;
-//       // ...
-//   })
-//   .catch(error => console.error('Error:', error));
-
-// });
-
-
 document.addEventListener('DOMContentLoaded', () => {
-  // Check if movie data is in local storage
-  const movieData = localStorage.getItem('movieData');
+    const params = new URLSearchParams(window.location.search);
+    const movieId = params.get('id');
 
-  if (movieData) {
-      const data = JSON.parse(movieData);
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=1cf50e6248dc270629e802686245c2c8`)
+        .then(response => response.json())
+        .then(data => {
+            // Populate movie details
+            document.getElementById('movieTitle').textContent = data.title;
+            document.getElementById('director').textContent = data.director;
+            document.getElementById('actors').textContent = data.actors.join(', ');
+            document.getElementById('viewerRating').textContent = data.vote_average;
+            document.getElementById('synopsis').textContent = data.overview;
+            document.getElementById('boxOffice').textContent = data.box_office;
 
-      // Populate movie details
-      document.getElementById('moviePoster').src = data.poster_path;
-      document.getElementById('movieTitle').textContent = data.title;
-      document.getElementById('director').textContent = data.director;
-      document.getElementById('actors').textContent = data.actors.join(', ');
-      document.getElementById('viewerRating').textContent = data.vote_average;
-      document.getElementById('synopsis').textContent = data.overview;
-      document.getElementById('boxOffice').textContent = data.box_office;
-
-      // Display trailer (if available)
-      if (data.trailer) {
-          const trailerElement = document.getElementById('trailer');
-          trailerElement.innerHTML = `
-              <iframe width="560" height="315" src="${data.trailer}" frameborder="0" allowfullscreen></iframe>
-          `;
-      }
-  } else {
-      // Fetch data from API and store in local storage
-      fetch(API_URL)
-          .then(response => response.json())
-          .then(data => {
-              // Parse and store data in local storage
-              localStorage.setItem('movieData', JSON.stringify(data));
-
-              // Populate movie details
-              document.getElementById('moviePoster').src = data.poster_path;
-              document.getElementById('movieTitle').textContent = data.title;
-              document.getElementById('director').textContent = data.director;
-              document.getElementById('actors').textContent = data.actors.join(', ');
-              document.getElementById('viewerRating').textContent = data.vote_average;
-              document.getElementById('synopsis').textContent = data.overview;
-              document.getElementById('boxOffice').textContent = data.box_office;
-
-              // Display trailer (if available)
-              if (data.trailer) {
-                  const trailerElement = document.getElementById('trailer');
-                  trailerElement.innerHTML = `
-                      <iframe width="560" height="315" src="${data.trailer}" frameborder="0" allowfullscreen></iframe>
-                  `;
-              }
-          })
-          .catch(error => console.error('Error:', error));
-  }
+            // Display trailer (if available)
+            if (data.trailer) {
+                const trailerElement = document.getElementById('trailer');
+                trailerElement.innerHTML = `
+                    <iframe width="560" height="315" src="${data.trailer}" frameborder="0" allowfullscreen></iframe>
+                `;
+            }
+        })
+        .catch(error => console.error('Error:', error));
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Add an event listener for the "Add to Watchlist" button
+    const addToWatchListButton = document.querySelector('.addToWatchList');
+    addToWatchListButton.addEventListener('click', addToWatchList);
 
+    function addToWatchList() {
+        // Get the movie details
+        const movieTitle = document.getElementById('movieTitle').textContent;
+        const moviePoster = document.querySelector('.fast').src;
 
-document.addEventListener("DOMContentLoaded", function () {
-  // ... (your existing code)
-
-  // Add an event listener for the "Add to watchlist" button
-  const addToWatchListButtons = document.querySelectorAll('.addToWatchList');
-  addToWatchListButtons.forEach(button => {
-      button.addEventListener('click', addToWatchList);
-  });
-
-  function addToWatchList() {
-      // Get the movie details
-      const movieTitle = this.parentElement.parentElement.querySelector('.movie-info h3').textContent;
-      const moviePoster = this.parentElement.parentElement.querySelector('img').src;
-
-      // Store the movie in local storage
-      const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
-      watchlist.push({ title: movieTitle, poster: moviePoster });
-      localStorage.setItem('watchlist', JSON.stringify(watchlist));
-  }
+        // Store the movie in local storage
+        const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+        watchlist.push({ title: movieTitle, poster: moviePoster });
+        localStorage.setItem('watchlist', JSON.stringify(watchlist));
+    }
 });
-
-
+}
 
 
 
