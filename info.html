@@ -16,10 +16,9 @@
     <main>
         <div class="individual-card">
             <div class="poster1">
-                <img class="fast" src="assets/image.webp">
+                <img class="fast" id="moviePoster"> <!-- Added ID for movie poster -->
             </div>
             <div class="details">
-            
                 <p><strong>Director:</strong> <span id="director"></span></p>
                 <p><strong>Actors:</strong> <span id="actors"></span></p>
                 <p><strong>Viewer Rating:</strong> <span id="viewerRating"></span></p>
@@ -29,12 +28,13 @@
                 <div class="buttons">
                     <button class="addToWatchList">Add to watchlist</button>
                 </div>
+                <button class="viewMore" data-id="575264">View More</button> <!-- Example "View More" button with a data-id -->
             </div>
         </div>
     </main>
 
-    
     <script src="js/main.js"></script>
+    <script src="js/info.js"></script> <!-- Add a separate script for handling movie details -->
 </body>
 
 </html>
