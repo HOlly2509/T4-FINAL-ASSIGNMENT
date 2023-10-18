@@ -3,12 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/css/sign.css">
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
-  
+  <script>
+    function auth() {
+      let user = localStorage.getItem("Logged In");
+      if (user) {
+        window.location.href = "index.html";
+      }
+    }
+
+    auth(); 
+  </script>
+  <script src="/js/login.js"></script>
 
 <div class="section">
   <div class="container">
@@ -23,39 +34,40 @@
             <div class="card-3d-wrapper">
               <div class="card-front">
                 <div class="center-wrap">
-                  <div class="section text-center">
+                  <form class="section text-center" id="login">
                     <h4 class="mb-4 pb-3">Log In</h4>
                     <div class="form-group">
-                      <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off">
+                      <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off" required>
                       <i class="input-icon uil uil-at"></i>
                     </div>
                     <div class="form-group mt-2">
-                      <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off">
+                      <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off" required>
                       <i class="input-icon uil uil-lock-alt"></i>
                     </div>
-                    <a href="#" class="btn mt-4">submit</a>
+                    <button type="submit" class="btn mt-4">submit</button>
+                    <p id="loginerror"></p>
                     <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
-                  </div>
+                  </form>
                 </div>
               </div>
               <div class="card-back">
                 <div class="center-wrap">
-                  <div class="section text-center">
+                  <form class="section text-center" id="sign">
                     <h4 class="mb-4 pb-3">Sign Up</h4>
                     <div class="form-group">
-                      <input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="off">
+                      <input type="text" name="signname" class="form-style" placeholder="Your Full Name" id="signname" autocomplete="off" required>
                       <i class="input-icon uil uil-user"></i>
                     </div>
                     <div class="form-group mt-2">
-                      <input type="email" name="logemail" class="form-style" placeholder="Your Email" autocomplete="off">
+                      <input type="email" name="signemail" class="form-style" placeholder="Your Email" autocomplete="off" required>
                       <i class="input-icon uil uil-at"></i>
                     </div>
                     <div class="form-group mt-2">
-                      <input type="password" name="logpass" class="form-style" placeholder="Your Password" autocomplete="off">
+                      <input type="password" name="signpass" class="form-style" placeholder="Your Password" autocomplete="off" required>
                       <i class="input-icon uil uil-lock-alt"></i>
                     </div>
-                    <a href="#" class="btn mt-4">submit</a>
-                  </div>
+                    <button type="submit"  class="btn mt-4">submit</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -65,5 +77,7 @@
     </div>
   </div>
 </div>
+
+
 </body>
 </html>

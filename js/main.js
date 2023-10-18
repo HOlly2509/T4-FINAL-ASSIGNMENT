@@ -361,6 +361,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+function auth(){let user=localStorage.getItem("user") 
+if (user === undefined && user === null) {
+    window.location.href = "up.html"
+}};
+
 
 
 
