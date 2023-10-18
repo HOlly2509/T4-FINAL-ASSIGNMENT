@@ -1,5 +1,5 @@
 
-
+@import url("https://unicons.iconscout.com/release/v2.1.9/css/unicons.css");
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css");
 body {
@@ -8,8 +8,19 @@ body {
   font-size: 15px;
   line-height: 1.7;
   color: #e4e14d;
-  background-color: #1f2029;
+  background-image: url("/assets/1100PCS\ Minimalist\ Movie\ Posters\,\ Polaroid\ Series\ Aesthetic\ Prints\,\ Aesthetic\ Covers\,\ Room\ Decor\,\ Wall\ Collage\ Kit\,\ Vintage\ Movies\ Design.jpg");
+  background-color: rgba(16, 39, 112, 0.2);
   overflow-x: hidden;
+}
+body::before {
+  content: "";
+  background: rgba(16, 39, 112, 0.9);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; 
 }
 a {
   cursor: pointer;
@@ -110,7 +121,7 @@ h6 span {
 .card-back {
   width: 100%;
   height: 100%;
-  background-color: #2a2b38;
+  background-color: #102770;
   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg");
   background-position: bottom center;
   background-repeat: no-repeat;
@@ -161,7 +172,7 @@ h6 span {
   letter-spacing: 0.5px;
   outline: none;
   color: #c4c3ca;
-  background-color: #1f2029;
+  background-color: #040d2c;
   border: none;
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
