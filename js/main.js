@@ -81,6 +81,7 @@ const genres = [
       "id": 37,
       "name": "Western"
     }
+    
   ]
 
 const main = document.getElementById('main');
@@ -128,6 +129,44 @@ function setGenre() {
     });
 }
 
+// ... (existing code)
+
+const yearSlider = document.getElementById('year');
+const yearValue = document.getElementById('yearValue');
+const imdbSlider = document.getElementById('imdb');
+const imdbValue = document.getElementById('imdbValue');
+
+yearSlider.addEventListener('input', function() {
+    yearValue.innerText = this.value;
+    filterMovies();
+});
+
+imdbSlider.addEventListener('input', function() {
+    imdbValue.innerText = this.value;
+    filterMovies();
+});
+
+function filterMovies() {
+    const selectedYear = yearSlider.value;
+    const selectedImdb = imdbSlider.value;
+
+    console.log(`Selected Year: ${selectedYear}, Selected IMDB: ${selectedImdb}`);
+
+    // ... (rest of the filtering logic)
+
+
+
+    const filteredMovies = data.results.filter(movie => {
+        const releaseYear = new Date(movie.release_date).getFullYear();
+        return releaseYear == selectedYear && movie.vote_average >= selectedImdb;
+    });
+
+    showMovies(filteredMovies);
+}
+
+// ... (rest of your code)
+
+
 function highlightSelection() {
     const tags = document.querySelectorAll('.tag');
     tags.forEach(tag => {
@@ -145,21 +184,21 @@ function highlightSelection() {
 function clearBtn(){
     let clearBtn = document.getElementById('clear');
     if(clearBtn){
-        clearBtn.classList.add('highlight')
-    }else{
-            
+        clearBtn.classList.add('highlight');
+    } else {
         let clear = document.createElement('div');
-        clear.classList.add('tag','highlight');
+        clear.classList.add('tag', 'highlight');
         clear.id = 'clear';
         clear.innerHTML = '<span>&#10006;</span> Clear';
         clear.addEventListener('click', () => {
             selectedGenre = [];
-            setGenre();            
+            setGenre();
             getMovies(API_URL);
-        })
+        });
         tagsEl.append(clear);
     }
 }
+
 
 getMovies(API_URL);
 
@@ -309,6 +348,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const backButton = document.querySelector('.back');
+
+    backButton.addEventListener('click', function() {
+        window.location.href = 'movies.html';
+    });
+});
 
 
 
