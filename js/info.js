@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Error:', error));
 });
 
+
+
 document.addEventListener('DOMContentLoaded', function () {
     // Add an event listener for the "Add to Watchlist" button
     const addToWatchListButton = document.querySelector('.addToWatchList');
@@ -40,8 +42,23 @@ document.addEventListener('DOMContentLoaded', function () {
         const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
         watchlist.push({ title: movieTitle, poster: moviePoster });
         localStorage.setItem('watchlist', JSON.stringify(watchlist));
+
+        // Show the notification
+        showNotification('Movie added to watchlist successfully!');
     }
 });
+
+function showNotification(message) {
+    const notificationElement = document.getElementById('notification');
+    notificationElement.innerText = message;
+    notificationElement.classList.add('show');
+
+    setTimeout(() => {
+        notificationElement.classList.remove('show');
+        notificationElement.innerText = 'Movie added to watchlist successfully!';
+    }, 3000);
+}
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const backButton = document.querySelector('.back');
@@ -50,3 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'movies.html';
     });
 });
+
+
+
