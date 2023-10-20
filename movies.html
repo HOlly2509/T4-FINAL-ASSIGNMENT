@@ -9,19 +9,37 @@
 <body>
     
     <header>
+        <div class="nav">
+            <ul>
+                <a href="">Home</a>
+                <a href="">Watchlist</a>
+                <a href="">Movies</a>
+            </ul>
+        </div>
         <form  id="form">
             <input type="text" placeholder="Search" id="search" class="search">
         </form>
+
+    
     </header>
 
-    <div class="nav">
-        <ul>
-            <a href="">Home</a>
-            <a href="">Watchlist</a>
-            <a href="">Movies</a>
-        </ul>
+    <!-- Rest of your code remains the same -->
+
+
+
+
+  
+    <div id="tags">
+        <!-- Add this code within the appropriate section of your HTML structure -->
+
+ 
+    <!-- Add Clear button here -->
+    <div class="tag highlight" id="clear">
+        <span>&#10006;</span> Clear
+   
+</div>
+
     </div>
-    <div id="tags"></div>
 
     <div id="myNav" class="overlay">
 
@@ -35,6 +53,20 @@
         
         <a href="javascript:void(0)" class="arrow right-arrow" id="right-arrow" >&#8658;</a>
 
+    </div>
+      <!-- Filters -->
+      <div class="filters">
+           
+
+        <!-- Year -->
+        <label for="year">Year:</label>
+        <input type="range" min="1900" max="2023" value="2023" class="slider" id="year">
+        <span id="yearValue">2023</span>
+
+        <!-- IMDB Score -->
+        <label for="imdb">IMDB Score:</label>
+        <input type="range" min="0" max="10" value="5" step="0.1" class="slider" id="imdb">
+        <span id="imdbValue">5.0</span>
     </div>
     <main id="main"></main>
 

@@ -42,3 +42,11 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('watchlist', JSON.stringify(watchlist));
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const backButton = document.querySelector('.back');
+
+    backButton.addEventListener('click', function() {
+        window.location.href = 'movies.html';
+    });
+});
