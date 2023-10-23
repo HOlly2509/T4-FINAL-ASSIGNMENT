@@ -7,42 +7,54 @@
     <link rel="stylesheet" href="css/watchlist.css">
     <title>My Watchlist</title>
 </head>
-
+<header>
+    <div class="branding">Cinemania</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="">Sign Up</a>
+        <a href="movielist.html">Movie List</a>
+        <a href="watchlist.html">Watchlist</a>
+    </nav>
+    <form  id="form">
+        <input type="text" placeholder="Search" id="search" class="search">
+    </form>
+</header>
 <body>
+    <h1>Movie List</h1>
 
-    <header>
-        <div class="branding">Cinemania</div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="">Sign Up</a>
-            <a href="movielist.html">Movie List</a>
-            <a href="watchlist.html">Watchlist</a>
-        </nav>
-        <form id="form">
-            <input type="text" placeholder="Search" id="search" class="search">
-        </form>
-    </header>
+    <input type="text" id="movieInput" placeholder="Enter movie name">
+    <button onclick="addMovie()">Add Movie</button>
 
-    <main>
-        <h2>My Watchlist</h2>
-        <div id="watchlist-container"></div>
-        <div class="watchlist-container">
-            <div class="watchlist-movie">
-                <img src="assets/Fast_and_Furious_Poster.jpg" alt="Movie Title">
-                <div class="watchlist-info">
-                    <h3>Movie Title</h3>
-                    <button class="remove-from-watchlist">Remove</button>
-                </div>
-            </div>
-            <!-- Where id add more movie cards -->
-            <!--Need to find a way to make js work well with movielist-->
-        </div>
-        
-    </main>
+    <ul id="movieList">
+    </ul>
 
-    <script src="js/watchlist.js"></script>
+    <script>
+        const movieList = document.getElementById('movieList');
 
+        function addMovie() {
+            const movieName = document.getElementById('movieInput').value.trim();
+
+            if (movieName) {
+                // Creates a new list item
+                const listItem = document.createElement('li');
+
+                // I need to find a way to get the javascript working with the other already made javascript 
+                listItem.appendChild(document.createTextNode(movieName));
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.innerText = 'Delete';
+                deleteBtn.onclick = function() {
+                    movieList.removeChild(listItem);
+                };
+                listItem.appendChild(deleteBtn);
+
+                movieList.appendChild(listItem);
+
+                document.getElementById('movieInput').value = '';
+            } else {
+                alert('Please enter a movie name.');
+            }
+        }
+    </script>
 </body>
 </html>
-
-<!--Just adding here to test Github-->

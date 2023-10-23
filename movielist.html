@@ -26,7 +26,13 @@
 
         <!-- Button to close the overlay navigation -->
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      
+
+        <div class="movie">
+            <!-- Other movie details, like title and image -->
+            <button class="add-to-watchlist" onclick="addToMovieList(currentMovieName)">Add to Watchlist</button>
+
+        </div>
+
         <!-- Overlay content -->
         <div class="overlay-content" id="overlay-content"></div>
         
@@ -35,6 +41,22 @@
         <a href="javascript:void(0)" class="arrow right-arrow" id="right-arrow" >&#8658;</a>
 
     </div>
+    
+
+<script>
+    function addToMovieList(movieName) {
+        let movies = JSON.parse(localStorage.getItem('movies')) || [];
+        
+        if (!movies.includes(movieName)) {
+            movies.push(movieName);
+            localStorage.setItem('movies', JSON.stringify(movies));
+            alert(`${movieName} added to your list!`);
+        } else {
+            alert(`${movieName} is already in your list!`);
+        }
+    }
+</script>
+
     <main id="main"></main>
 
    
@@ -46,6 +68,7 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="js/watchlist.js"></script>
 </body>
 </html>
 

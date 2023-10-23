@@ -1,3 +1,8 @@
+:root {
+    --primary-color: #bda522; 
+    --secondary-color: #06215f; 
+}
+
 /* Navbar */
 .branding {
     font-size: 2rem;
@@ -17,11 +22,13 @@ nav a {
     padding: 0.5rem 1rem;
     border-radius: 15px;
     transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
 }
 
 nav a:hover {
     background-color: var(--primary-color);
     color: var(--secondary-color);
+    font-weight: bold;
 }
 
 /* Hero */

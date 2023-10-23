@@ -364,6 +364,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+let currentMovieName = '';
+
+function addToMovieList(movieName) {
+    let movies = JSON.parse(localStorage.getItem('movies')) || [];
+    
+    if (!movies.includes(movieName)) {
+        movies.push(movieName);
+        localStorage.setItem('movies', JSON.stringify(movies));
+        alert(`${movieName} added to your watchlist!`);
+    } else {
+        alert(`${movieName} is already in your watchlist!`);
+    }
+}
+
 
 
 
