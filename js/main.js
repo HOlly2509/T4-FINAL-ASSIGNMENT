@@ -11,7 +11,7 @@ const genres = [
     },
     {
       "id": 12,
-      "name": "Adventure"
+      "name": "Adventure" 
     },
     {
       "id": 16,
