@@ -129,7 +129,6 @@ function setGenre() {
     });
 }
 
-// ... (existing code)
 
 const yearSlider = document.getElementById('year');
 const yearValue = document.getElementById('yearValue');
@@ -152,7 +151,7 @@ function filterMovies() {
 
     console.log(`Selected Year: ${selectedYear}, Selected IMDB: ${selectedImdb}`);
 
-    // ... (rest of the filtering logic)
+
 
 
 
@@ -164,7 +163,7 @@ function filterMovies() {
     showMovies(filteredMovies);
 }
 
-// ... (rest of your code)
+
 
 
 function highlightSelection() {
@@ -277,7 +276,7 @@ viewMoreButtons.forEach(button => {
 });
 
 function getColor(vote) {
-    // (Your existing getColor function code here...)
+    
 }
 
 form.addEventListener('submit', (e) => {
@@ -349,13 +348,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const backButton = document.querySelector('.back');
 
-    backButton.addEventListener('click', function() {
-        window.location.href = 'movies.html';
-    });
-});
 
 
 
