@@ -8,6 +8,7 @@ const genres = [
     {
       "id": 28,
       "name": "Action"
+
     },
     {
       "id": 12,
@@ -180,6 +181,8 @@ function highlightSelection() {
     }
 }
 
+
+
 function clearBtn(){
     let clearBtn = document.getElementById('clear');
     if(clearBtn){
@@ -195,7 +198,9 @@ function clearBtn(){
             getMovies(API_URL);
         });
         tagsEl.append(clear);
+
     }
+    
 }
 
 
@@ -348,6 +353,22 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 }
 
+function filterMovies() {
+    const selectedYear = yearSlider.value;
+    const selectedImdb = imdbSlider.value;
+
+   
+    fetch(API_URL)
+        .then(res => res.json())
+        .then(data => {
+            const filteredMovies = data.results.filter(movie => {
+                const releaseYear = new Date(movie.release_date).getFullYear();
+                return releaseYear == selectedYear && movie.vote_average >= selectedImdb;
+            });
+            showMovies(filteredMovies);
+        })
+        .catch(error => console.error('Error fetching movies:', error));
+}
 
 
 

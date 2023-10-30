@@ -2,19 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const movieId = params.get('id');
 
+    // Fetch movie details
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=1cf50e6248dc270629e802686245c2c8`) 
         .then(response => response.json())
         .then(data => {
-            // Populate movie details
+            //  movie details
             document.getElementById('moviePoster').src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
             document.getElementById('movieTitle').textContent = data.title;
-            document.getElementById('director').textContent = 'Director Name'; // Add code to get director name
-            document.getElementById('actors').textContent = 'Actor 1, Actor 2'; // Add code to get actors
+            document.getElementById('director').textContent = 'Director Name'; 
             document.getElementById('viewerRating').textContent = data.vote_average;
             document.getElementById('synopsis').textContent = data.overview;
-            document.getElementById('boxOffice').textContent = 'Box Office Amount'; // Add code to get box office amount
 
-            // Display trailer (if available)
+
+            
             if (data.videos.results.length > 0) {
                 const trailerElement = document.getElementById('trailer');
                 const trailerKey = data.videos.results[0].key;
@@ -22,9 +22,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/${trailerKey}" frameborder="0" allowfullscreen></iframe>
                 `;
             }
+
+            // Fetch actors information
+            const settings = {
+                async: true,
+                crossDomain: true,
+                url: 'https://moviesdatabase.p.rapidapi.com/actors',
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '5a6726da9fmsh81d0287a06b3491p101e62jsnef7b61c73c4e',
+                    'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+                }
+            };
+
+            $.ajax(settings).done(function (response) {
+                const actors = response.actors.map(actor => actor.name).join(', ');
+                document.getElementById('actors').textContent = actors;
+            });
         })
         .catch(error => console.error('Error:', error));
 });
+
+
+
 
 
 
@@ -68,5 +88,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+test( 'fetch movie trailer by TMDB ID', async t => {
+
+	t.plan( 2 )
+
+	const trailer = await movieTrailer( null, { tmdbId: '507089' } )
+
+	t.is( trailer.indexOf( 'http' ), 0, 'returns a url' )
+	t.not( trailer.indexOf( 'youtube' ), -1, 'returns a youtube url' )
+
+} )
 
 
