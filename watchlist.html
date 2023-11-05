@@ -5,56 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/watchlist.css">
-    <title>My Watchlist</title>
+    <title>Watchlist</title>
 </head>
-<header>
-    <div class="branding">Cinemania</div>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="">Sign Up</a>
-        <a href="movielist.html">Movie List</a>
-        <a href="watchlist.html">Watchlist</a>
-    </nav>
-    <form  id="form">
-        <input type="text" placeholder="Search" id="search" class="search">
-    </form>
-</header>
 <body>
-    <h1>Movie List</h1>
+    <header>
+        <div class="branding">Cinemania</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="movielist.html">Movie List</a>
+            <a href="watchlist.html">Watchlist</a>
+        </nav>
+        <form id="form">
+            <input type="text" placeholder="Search" id="search" class="search">
+        </form>
+    </header>
 
-    <input type="text" id="movieInput" placeholder="Enter movie name">
-    <button onclick="addMovie()">Add Movie</button>
+    <h1>Available Movies</h1>
+    <div id="available-movies" class="movie-container">
+    </div>
 
-    <ul id="movieList">
-    </ul>
+    <h1>Your Watchlist</h1>
+    <div id="watchlist" class="movie-container">
+    </div>
 
-    <script>
-        const movieList = document.getElementById('movieList');
-
-        function addMovie() {
-            const movieName = document.getElementById('movieInput').value.trim();
-
-            if (movieName) {
-                // Creates a new list item
-                const listItem = document.createElement('li');
-
-                // I need to find a way to get the javascript working with the other already made javascript 
-                listItem.appendChild(document.createTextNode(movieName));
-
-                const deleteBtn = document.createElement('button');
-                deleteBtn.innerText = 'Delete';
-                deleteBtn.onclick = function() {
-                    movieList.removeChild(listItem);
-                };
-                listItem.appendChild(deleteBtn);
-
-                movieList.appendChild(listItem);
-
-                document.getElementById('movieInput').value = '';
-            } else {
-                alert('Please enter a movie name.');
-            }
-        }
-    </script>
+    <script src="js/watchlist.js"></script>
 </body>
 </html>

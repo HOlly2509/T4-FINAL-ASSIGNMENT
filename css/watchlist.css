@@ -1,29 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-:root {
-    --primary-color: #00003A;
-    --secondary-color: #FDF502;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background-color: var(--primary-color);
-    font-family: 'Poppins', sans-serif;
-    color: var(--secondary-color);
+    background-color: #001F3F; 
+    color: #FFDC00; 
+    font-size: 16px;
     line-height: 1.6;
 }
 
 header {
+    background-color: #FFDC00; 
     padding: 1rem 5%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    background-color: var(--secondary-color);
+    align-items: center;
 }
 
 .branding {
@@ -33,115 +27,96 @@ header {
 
 nav {
     display: flex;
-    gap: 20px;
+    gap: 15px;
 }
 
 nav a {
-    color: var(--primary-color);
     text-decoration: none;
+    color: #001F3F;
     padding: 0.5rem 1rem;
     border-radius: 15px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    font-weight: bold;
+    transition: background 0.3s;
 }
 
 nav a:hover {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    font-weight: bold;
+    background-color: #001F3F;
+    color: #FFDC00;
 }
 
 .search {
-    background-color: transparent;
-    border: 2px solid var(--primary-color);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    font-size: 1rem;
-    color: var(--secondary-color);
-    font-family: inherit;
-    transition: border 0.3s;
+    padding: 0.5rem;
+    border-radius: 15px;
+    border: none;
+    background-color: #001F3F;
+    color: #FFDC00;
+    transition: box-shadow 0.3s;
 }
 
 .search:focus {
+    box-shadow: 0 0 5px #FFDC00;
     outline: none;
-    border-color: var(--secondary-color);
-}
-
-.search::placeholder {
-    color: rgba(255,255,255, 0.7);
-}
-
-main {
-    padding: 2rem 5%;
 }
 
 h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
     text-align: center;
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 15px;
+    margin: 2rem 0;
+    border-bottom: 2px solid #FFDC00;
+    padding-bottom: 0.5rem;
 }
 
-#movieInput {
-    padding: 10px;
-    border-radius: 5px;
-    width: 80%;
-    margin-right: 10px;
-    border: 2px solid var(--secondary-color);
-    font-family: inherit;
-    color: var(--secondary-color);
-    background-color: transparent;
+#available-movies, #watchlist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+#available-movies div, #watchlist div {
+    width: 200px;
+    border: 1px solid #FFDC00;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+#available-movies div:hover, #watchlist div:hover {
+    transform: scale(1.05);
+}
+
+#available-movies img, #watchlist img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #FFDC00;
 }
 
 button {
-    padding: 10px 20px;
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
     border: none;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    border-radius: 5px;
+    border-radius: 15px;
+    background-color: #FFDC00;
+    color: #001F3F;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background 0.3s;
 }
 
 button:hover {
-    background-color: rgba(253,245,2, 0.8);
+    background-color: rgba(255, 220, 0, 0.8);
 }
 
-#movieList {
-    margin-top: 20px;
-    list-style-type: none;
-}
-
-#movieList li {
-    background-color: var(--secondary-color);
-    padding: 10px;
-    margin-bottom: 10px;
+.popup {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4186cc; 
+    color: #fffb00; 
+    padding: 15px 30px;
     border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#movieList li button {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#movieList li button:hover {
-    background-color: rgba(0,0,58, 0.8);
-}
-
-.logo {
-    width: 160px; 
-    height: auto;
-    position: absolute;
-    top: 100%;  
-    right: 0;
-    transform: translateY(5%);  
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    font-size: 1.2em;
+    z-index: 1000; 
 }

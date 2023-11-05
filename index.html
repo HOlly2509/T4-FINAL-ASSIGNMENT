@@ -3,53 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/maintwo.css">
+    <link rel="stylesheet" href="css/homepage.css">
     <title>Cinemania</title>
 </head>
 <body>
-
-    <header>
-        <div class="branding">
-            Cinemania
-            <img src="assets/logo.png" alt="Cinemania Logo" class="logo">
+    
+    <nav>
+        <div class="logo-container">
+            <img src="assets/logo.png" id="logo">
         </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="">Sign Up</a>
-            <a href="movielist.html">Movie List</a>
-            <a href="watchlist.html">Watchlist</a>
-        </nav>
-        <form id="form">
-            <input type="text" placeholder="Search" id="search" class="search">
-        </form>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="movielist.html">Movie List</a></li>
+            <li><a href="watchlist.html">Watchlist</a></li>
+        </ul>
+    </nav>
+    
+    <header>
+        CineMania
     </header>
-
-    <section class="hero">
-        <h1>Welcome to Cinemania</h1>
-        <p>Your onestop destination for all the movies you can possibly need!</p>
-    </section>
-
-    <main>
-        <section class="feature-film">
-            <div class="poster">
-                <img src="assets/Fast_and_Furious_Poster.jpg" alt="Featured Film Poster">
+    
+    <div class="main-content">
+        <div class="main-panel">
+            <div class="movie-card">
+                <img src="" alt="Movie Poster" id="dynamic-image">
+                <div class="movie-description">
+                    <h1>Welcome to CineMania</h1>
+                    <p>Your one-stop destination for all things cinema!</p>
+                </div>
             </div>
-            <div class="feature-film-description">
-                <h2>A film we recommend</h2>
-                <h1>fast & Furious</h1>
-                <p>The Fast and the Furious started as a movie about drag racing in Los Angeles and became a high stakes, action-packed franchise about family—and working with the government to take down big bads around the world.</p>
-                <a href="individual.html" class="watch-now">Watch Now</a>  <!--Made the href the individual.html-->
-            </div>
-        </section>
-    </main>
+        </div>
+    </div>
+
+    <h1 class="movielisttag">Below is a list of movies that you can choose from</h1>
+        <div class="movie-slider" id="movie-slider">
+    </div>
 
     <footer>
         <p>&copy; 2023 Cinemania. All Rights Reserved.</p>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="js/homepage.js"></script>
+
 </body>
 </html>
-
-
-<!--Just adding here to test Github-->
