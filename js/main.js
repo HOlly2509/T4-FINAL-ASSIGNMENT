@@ -268,10 +268,10 @@ function showMovies(data) {
 
 
 
-  //INFO PAGE//
 
 
- // Add event listener for "View more" buttons
+
+
 const viewMoreButtons = document.querySelectorAll('.viewMore');
 viewMoreButtons.forEach(button => {
     button.addEventListener('click', (event) => {
@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('synopsis').textContent = data.overview;
             document.getElementById('boxOffice').textContent = data.box_office;
 
-            // Display trailer (if available)
+            
             if (data.trailer) {
                 const trailerElement = document.getElementById('trailer');
                 trailerElement.innerHTML = `
