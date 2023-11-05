@@ -2,12 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="js/main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/main.css">
     <title>Movie App</title>
 </head>
+
 <body>
-    
+    <script>
+        function auth() {
+          let user = localStorage.getItem("Logged In");
+          if (user === undefined || user === null) {
+            window.location.href = "up.html";
+          }
+        }
+  
+        auth(); 
+      </script>
     <header>
         <form  id="form">
             <input type="text" placeholder="Search" id="search" class="search">
@@ -38,7 +49,7 @@
 
     </div>
 
-    <script src="js/main.js"></script>
+   
 </body>
 </html>
 

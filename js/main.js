@@ -351,25 +351,13 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('watchlist', JSON.stringify(watchlist));
     }
 });
+
+function auth(){let user=localStorage.getItem("user") 
+if (user === undefined && user === null) {
+    window.location.href = "up.html"
+}};
+
 }
-
-function filterMovies() {
-    const selectedYear = yearSlider.value;
-    const selectedImdb = imdbSlider.value;
-
-   
-    fetch(API_URL)
-        .then(res => res.json())
-        .then(data => {
-            const filteredMovies = data.results.filter(movie => {
-                const releaseYear = new Date(movie.release_date).getFullYear();
-                return releaseYear == selectedYear && movie.vote_average >= selectedImdb;
-            });
-            showMovies(filteredMovies);
-        })
-        .catch(error => console.error('Error fetching movies:', error));
-}
-
 
 
 
