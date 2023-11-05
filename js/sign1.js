@@ -14,7 +14,7 @@ $(document).ready(function () {
       let user = { name: name, email: email, pass: pass };
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("Logged In", true)
-      window.location.href = "index.html";
+      window.location.href = "../index.html";
     }
     signform.addEventListener("submit", signup);
     function login(e) {
@@ -27,7 +27,7 @@ $(document).ready(function () {
         if (user.email === email) {
           if (user.pass === pass) 
           {     localStorage.setItem("Logged In", true)
-            window.location.href = "index.html";
+            window.location.href = "../index.html";
           }else{
             loginerror.textContent="Password don't match"
           }
