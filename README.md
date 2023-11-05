@@ -3,6 +3,11 @@
 [Ricard Oosthuizen DV-100 Term 4 Demonstartion video and screenshots.zip](https://github.com/HOlly2509/T4-FINAL-ASSIGNMENT/files/13260839/Ricard.Oosthuizen.DV-100.Term.4.Demonstartion.video.and.screenshots.zip)
 
 # Screenshots 
+# Login
+![Log](https://github.com/HOlly2509/T4-FINAL-ASSIGNMENT/assets/125279792/a460a5d7-e70c-47b9-9ade-1b5265708fe2)
+
+# Sign-up 
+![sign up](https://github.com/HOlly2509/T4-FINAL-ASSIGNMENT/assets/125279792/641d4888-4947-4348-a58b-3845a6eceff5)
 
 # Homepage 
 ![Homepage](assets/homepage.png)
