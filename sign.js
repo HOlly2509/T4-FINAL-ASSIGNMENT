@@ -7,7 +7,7 @@ $(document).ready(function () {
       let name = signform.elements["signname"].value;
       let email = signform.elements["signemail"].value;
       let pass = signform.elements["signpass"].value;
-    
+
       console.log(name);
       console.log(email);
       console.log(pass);
