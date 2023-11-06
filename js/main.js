@@ -85,21 +85,21 @@ const genres = [
     
   ]
 
-const main = document.getElementById('main');
-const form = document.getElementById('form');
-const search = document.getElementById('search');
-const tagsEl = document.getElementById('tags');
-
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
-const current = document.getElementById('current');
-
-var currentPage = 1;
-var totalPages = 2;  
-
-var selectedGenre = [];
-
-setGenre();
+  const main = document.getElementById('main');
+  const form = document.getElementById('form');
+  const search = document.getElementById('search');
+  const tagsEl = document.getElementById('tags');
+  
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
+  const current = document.getElementById('current');
+  
+  var currentPage = 1;
+  var totalPages = 2;
+  
+  var selectedGenre = [];
+  
+  setGenre();
 
 function setGenre() {
     tagsEl.innerHTML = '';
@@ -131,6 +131,7 @@ function setGenre() {
 }
 
 
+
 const yearSlider = document.getElementById('year');
 const yearValue = document.getElementById('yearValue');
 const imdbSlider = document.getElementById('imdb');
@@ -152,17 +153,16 @@ function filterMovies() {
 
     console.log(`Selected Year: ${selectedYear}, Selected IMDB: ${selectedImdb}`);
 
-
-
-
-
-    const filteredMovies = data.results.filter(movie => {
-        const releaseYear = new Date(movie.release_date).getFullYear();
-        return releaseYear == selectedYear && movie.vote_average >= selectedImdb;
-    });
-
-    showMovies(filteredMovies);
+    getMovies(API_URL + `&year=${selectedYear}&vote_average.gte=${selectedImdb}`)
+        .then(data => {
+            if (data.results) {
+                showMovies(data.results);
+            } else {
+                main.innerHTML = `<h1 class="no-results">No Results Found</h1>`;
+            }
+        });
 }
+
 
 
 
@@ -203,6 +203,10 @@ function clearBtn(){
     
 }
 
+function getMovies(url) {
+    return fetch(url).then(res => res.json());
+}
+
 
 getMovies(API_URL);
 
@@ -233,8 +237,8 @@ function getMovies(url) {
             main.innerHTML = `<h1 class="no-results">No Results Found</h1>`;
         }
 
+        filterMovies(data.results);
     });
-
 }
 
 function showMovies(data) {
